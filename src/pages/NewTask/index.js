@@ -6,20 +6,22 @@ import  {
     TouchableOpacity
 } from "react-native"
 
-import database from "../../config/firebaseconfig";
+import firebase from "../../config/firebaseconfig";
 import styles from "./style";
 
 
-export default function NewTask({ navigation }) {
-    const [description, setDescription] = useState(null)
+export default function NewTask({ navigation , route}) {
+    console.log(route);
 
+    const [description, setDescription] = useState(null)
+    const database = firebase.firestore()
 
     function addTask(){
-        database.collection("tasks").add({
+        database.collection(route.params.idUser).add({
             description: description,
             status: false
         })
-        navigation.navigate("Task")
+        navigation.navigate("Task",{idUser: route.params.idUser})
     }
 
 
@@ -34,9 +36,7 @@ export default function NewTask({ navigation }) {
             />
             <TouchableOpacity
                 style={styles.buttonNewText}
-                onPress={()=>{
-                    addTask()
-                }}
+                onPress={addTask}
             >
                 <Text
                     style={styles.iconButton}

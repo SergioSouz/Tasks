@@ -48,6 +48,22 @@ const styles = StyleSheet.create({
       color:'#ffffff',
       fontSize:25,
       fontWeight: 'bold'
+    },
+
+    buttonLogout:{
+      width:60,
+      height:60,
+      position: 'absolute',
+      bottom:30,
+      right: 20,
+      justifyContent:"center",
+      alignItems:"center",
+    },
+
+    iconButtonLogout:{
+      color: "#ffffff",
+      fontSize:25,
+      fontWeight:"bold",
     }
 
 });

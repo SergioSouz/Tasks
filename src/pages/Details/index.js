@@ -6,12 +6,14 @@ import  {
     TouchableOpacity
 } from "react-native"
 
-import database from "../../config/firebaseconfig";
+import firebase from "../../config/firebaseconfig";
 import styles from "./style";
 
 
 
 export default function Details({ navigation, route }) {
+
+    const database = firebase.firestore()
 
     const [descriptionEdit, setDescriptionEdit] = useState(route.params.description)
     const idTask = route.params.id
@@ -19,7 +21,7 @@ export default function Details({ navigation, route }) {
 
 
     function editText( description, id ){
-        database.collection("tasks").doc(id).update({
+        database.collection(route.params.idUser).doc(id).update({
             description: descriptionEdit,
         })
         navigation.navigate('Task')
